@@ -1,6 +1,5 @@
 const Event = require('../models/events_mod');
 
-
 /**
  * @param {express.Request} req 
  * @param {express.Response} res 
@@ -24,7 +23,6 @@ function index(req, res) {
 
 }
 
-
 /**
  * @param {express.Request} req 
  * @param {express.Response} res 
@@ -45,7 +43,6 @@ function show(req, res) {
         }
     });
 }
-
 
 /**
  * @param {express.Request} req 
@@ -77,7 +74,6 @@ function store(req, res) {
     });
 }
 
-
 /**
  * @param {express.Request} req 
  * @param {express.Response} res 
@@ -103,7 +99,6 @@ function update(req, res) {
 }
 
 
-
 // other functions
 function filterEvents(events, filters) {
     return events.filter(event => {
@@ -112,7 +107,6 @@ function filterEvents(events, filters) {
         );
     });
 }
-
 
 
 module.exports = {

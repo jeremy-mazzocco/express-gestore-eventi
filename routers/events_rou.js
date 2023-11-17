@@ -6,7 +6,6 @@ const eventsController = require("../controllers/events_ctrl");
 // router.use(authMiddleware);
 
 
-
 router.get("/", eventsController.index)
 router.get("/:id", eventsController.show)
 router.post("/store", eventsController.store)
