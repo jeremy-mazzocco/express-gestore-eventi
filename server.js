@@ -14,7 +14,7 @@ const eventsRouter = require("./routers/events_rou");
 
 
 // app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 // app.use(express.static("public"));
 
 app.use("/events", eventsRouter);
