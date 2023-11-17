@@ -20,20 +20,23 @@
   },
   {
     "id": 35,
-    "title": "New event",
-    "description": "new description",
-    "date": "2023-10-10"
+    "title": "Edit Post",
+    "description": "edit description",
+    "date": "2023-10-10",
+    "max-seat": "150"
   },
   {
     "id": 36,
-    "title": "New event",
-    "description": "new description",
-    "date": "2023-10-10"
+    "title": "Edit Post 2",
+    "description": "edit description",
+    "date": "2023-10-10",
+    "max-seat": "150"
   },
   {
     "id": 37,
-    "title": "New event",
-    "description": "new description",
-    "date": "2023-10-10"
+    "title": "Edit Post",
+    "description": "edit description",
+    "date": "2023-10-10",
+    "max-seat": "150"
   }
 ]

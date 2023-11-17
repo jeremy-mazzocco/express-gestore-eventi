@@ -12,7 +12,7 @@ function index(req, res) {
 
     const filteredEvents = filterEvents(events, filters);
 
-    const finalResult = filters ? filteredEvents : result;
+    const finalResult = filters ? filteredEvents : events;
 
     res.format({
         json: () => {
@@ -33,7 +33,9 @@ function show(req, res) {
     const id = req.params.id;
     const event = Event.getEventById(id);
 
-    // lancia un errore se l'evento non esiste !
+    if (!event) {
+        return res.status(404).json({ error: 'Evento non trovato' });
+    }
 
     res.format({
         json: () => {
@@ -73,8 +75,6 @@ function store(req, res) {
             });
         }
     });
-
-
 }
 
 
@@ -84,7 +84,24 @@ function store(req, res) {
  */
 function update(req, res) {
 
+    const id = req.params.id;
+    const event = Event.getEventById(id);
+
+    if (!event) {
+        return res.status(404).json({ error: 'Evento non trovato' });
+    }
+
+   const result = Event.updateEvent(req.body, id);
+
+    res.format({
+        json: () => {
+            res.type("json").send({
+                result,
+            });
+        }
+    });
 }
+
 
 
 // other functions
