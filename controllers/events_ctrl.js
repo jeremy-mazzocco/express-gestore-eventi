@@ -1,22 +1,29 @@
-// const fs = require("fs");
-// const path = require("path");
 const Event = require('../models/events_mod');
+
 
 /**
  * @param {express.Request} req 
  * @param {express.Response} res 
  */
 function index(req, res) {
-    const result = Event.getAllEvents();
+    const events = Event.getAllEvents();
+
+    const filters = req.query.title;
+
+    const filteredEvents = filterEvents(events, filters);
+
+    const finalResult = filters ? filteredEvents : result;
 
     res.format({
         json: () => {
             res.type("json").send({
-                result,
+                finalResult,
             });
         }
     });
+
 }
+
 
 /**
  * @param {express.Request} req 
@@ -24,18 +31,19 @@ function index(req, res) {
  */
 function show(req, res) {
     const id = req.params.id;
-    const result = Event.getEventById(id);
+    const event = Event.getEventById(id);
 
     // lancia un errore se l'evento non esiste !
 
     res.format({
         json: () => {
             res.type("json").send({
-                result,
+                event,
             });
         }
     });
 }
+
 
 /**
  * @param {express.Request} req 
@@ -69,12 +77,23 @@ function store(req, res) {
 
 }
 
+
 /**
  * @param {express.Request} req 
  * @param {express.Response} res 
  */
 function update(req, res) {
 
+}
+
+
+// other functions
+function filterEvents(events, filters) {
+    return events.filter(event => {
+        return (
+            event.title.toLowerCase().includes(filters.toLowerCase())
+        );
+    });
 }
 
 
