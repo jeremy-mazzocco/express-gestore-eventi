@@ -9,10 +9,9 @@ const Exception = require("../exceptions/Exception");
 function index(req, res) {
     const events = Event.getAllEvents();
 
-    if (!events.finalResult) {
-        // return res.status(404).json({ error: 'Evento non trovato' });
-        throw new Exception("XXXXXXXX", 500)
+    if (events.finalResult) {
 
+        throw new Exception("Server can't retrive data", 500)
     }
 
     const filters = req.query.title;

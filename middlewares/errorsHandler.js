@@ -18,7 +18,7 @@ module.exports = function (err, req, res, next) {
   res.format({
     json: () => {
       res.status(status).json({
-        message: "BEEEP BOOOOP BEEEP ERRORE!!",
+        message: "BEEEP BOOOOP BEEEP ERROR!!",
         error: err.message
       });
     }
