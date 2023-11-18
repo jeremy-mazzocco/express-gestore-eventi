@@ -17,7 +17,7 @@ class Event {
         this.maxSeats = maxSeats;
     }
 
-    // possibile refactionig !!!!!!!!
+    // possible refactionig !!!!!!!!
 
     static getAllEvents() {
         const filePath = path.join(__dirname, '../db/events.json');

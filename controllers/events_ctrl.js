@@ -1,4 +1,6 @@
 const Event = require('../models/events_mod');
+const Exception = require("../exceptions/Exception");
+
 
 /**
  * @param {express.Request} req 
@@ -6,6 +8,12 @@ const Event = require('../models/events_mod');
  */
 function index(req, res) {
     const events = Event.getAllEvents();
+
+    if (!events.finalResult) {
+        // return res.status(404).json({ error: 'Evento non trovato' });
+        throw new Exception("XXXXXXXX", 500)
+
+    }
 
     const filters = req.query.title;
 
@@ -97,6 +105,7 @@ function update(req, res) {
         }
     });
 }
+
 
 
 // other functions
