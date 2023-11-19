@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const Exception = require("../exceptions/Exception");
 const file = '../db/events.json';
 
 
@@ -78,9 +77,6 @@ class Event {
         return updatedEvents;
     }
 
-
-
-    // other methods
 
     /**
      * function read db and return events in an object

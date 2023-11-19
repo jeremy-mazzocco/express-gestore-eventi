@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@experis.com",
+    "eventId": 1
+  },
+  {
+    "id": 2,
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "jane.smith@experis.com",
+    "eventId": 1
+  },
+  {
+    "id": 3,
+    "firstName": "Bob",
+    "lastName": "Johnson",
+    "email": "bob.johnson@experis.com",
+    "eventId": 2
+  },
+  {
+    "id": 4,
+    "firstName": "Alice",
+    "lastName": "Williams",
+    "email": "alice.williams@experis.com",
+    "eventId": 3
+  },
+  {
+    "id": 5,
+    "firstName": "Charlie",
+    "lastName": "Brown",
+    "email": "charlie.brown@experis.com",
+    "eventId": 3
+  },
+  {
+    "id": 6,
+    "firstName": "Eva",
+    "lastName": "Martinez",
+    "email": "eva.martinez@experis.com",
+    "eventId": 3
+  }
+]
