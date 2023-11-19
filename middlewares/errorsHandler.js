@@ -9,17 +9,18 @@ const path = require("path");
  */
 module.exports = function (err, req, res, next) {
 
+  const status = err.status || 500;
+  const message = err.message || 'Internal Server Error';
+
   if (req.file) {
     fs.unlinkSync(req.file.path);
   }
-
-  const status = err.status;
 
   res.format({
     json: () => {
       res.status(status).json({
         message: "BEEEP BOOOOP BEEEP ERROR!!",
-        error: err.message
+        error: message
       });
     }
   });

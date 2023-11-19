@@ -11,7 +11,15 @@ class Event {
     #description;
     #date;
     #maxSeats;
-    
+
+    /**
+     * @param {number} id
+     * @param {string} title
+     * @param {string} description
+     * @param {string} date
+     * @param {number} maxSeats
+     */
+
     constructor(id, title, description, date, maxSeats) {
         this.id = id;
         this.title = title;
@@ -32,29 +40,28 @@ class Event {
     static getEventById(id) {
 
         const events = Event.readfile(file);
-
         const event = events.find((event) => event.id == id);
 
         return event;
     }
 
 
-    static saveEvent(event) {
+    static saveEvent(objEvent) {
 
         const events = Event.readfile(file);
-
         const filePath = path.join(__dirname, file);
 
-        events.push(event);
+        events.push(objEvent);
 
         fs.writeFileSync(filePath, JSON.stringify(events, null, 2));
+
+        return objEvent;
     }
 
 
     static updateEvent(body, id) {
-        
-        const events = Event.readfile(file);
 
+        const events = Event.readfile(file);
         const filePath = path.join(__dirname, file);
 
         const eventIndex = events.findIndex((event) => event.id == id);
@@ -73,8 +80,13 @@ class Event {
 
 
 
-
     // other methods
+
+    /**
+     * function read db and return events in an object
+     * @param {string} file
+     * @returns {array} events
+     */
     static readfile(file) {
         const filePath = path.join(__dirname, file);
         const rawData = fs.readFileSync(filePath, 'utf-8');

@@ -95,7 +95,7 @@ function store(req, res) {
 
             res.json(newPost);
         }
-    }
+}
 
 function destroy(req, res) {
 
