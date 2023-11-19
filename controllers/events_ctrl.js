@@ -19,13 +19,7 @@ function index(req, res) {
     const filteredEvents = filterEvents(events, filters);
     const finalResult = filters ? filteredEvents : events;
 
-    res.format({
-        json: () => {
-            res.type("json").send({
-                finalResult,
-            });
-        }
-    });
+    res.json({ finalResult });
 
 }
 
@@ -47,13 +41,7 @@ function show(req, res) {
         throw new Exception("Event not found", 404)
     }
 
-    res.format({
-        json: () => {
-            res.type("json").send({
-                event,
-            });
-        }
-    });
+    res.json({ event });
 }
 
 /**
@@ -64,7 +52,7 @@ function show(req, res) {
 function store(req, res) {
 
     const events = Event.getAllEvents()
-    
+
     if (events.finalResult) {
         throw new Exception("Server can't retrive data", 500)
     };
@@ -85,13 +73,8 @@ function store(req, res) {
         throw new Exception("Server can't save data", 500)
     }
 
-    res.format({
-        json: () => {
-            res.type("json").send({
-                newEvent,
-            });
-        }
-    });
+    res.json({ newEvent });
+
 }
 
 /**
@@ -113,18 +96,12 @@ function update(req, res) {
     }
 
     const result = Event.updateEvent(req.body, id);
-    
+
     if (!result) {
         throw new Exception("Server can't save data", 500)
-    }   
+    }
 
-    res.format({
-        json: () => {
-            res.type("json").send({
-                result,
-            });
-        }
-    });
+    res.json({ result });
 }
 
 

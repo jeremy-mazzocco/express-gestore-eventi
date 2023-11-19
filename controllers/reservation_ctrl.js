@@ -9,8 +9,15 @@ const Reservation = require('../models/reservation_mod');
 function index(req, res) {
 
     const eventId = req.params.event;
-
     const reservations = Reservation.getReservationsByEventId(eventId);
+
+    if (!eventId) {
+        throw new Exception("ID is required", 400);
+    }
+
+    if (!reservations) {
+        throw new Exception("Reservation not found", 404)
+    }
 
     res.json({ reservations });
 }
@@ -23,8 +30,15 @@ function index(req, res) {
 function store(req, res) {
 
     const eventId = parseInt(req.params.event);
-
     const reservations = Reservation.getAllReservations();
+
+    if (!eventId) {
+        throw new Exception("ID is required", 400);
+    }
+
+    if (!reservations) {
+        throw new Exception("Server can't retrive reservations", 500)
+    }
 
     // get last id
     const idList = reservations.map((reservation) => reservation.id).sort((a, b) => b - a);
@@ -60,6 +74,7 @@ function destroy(req, res) {
     Reservation.deleteReservation(reservationId);
 
     res.json({ message: 'Prenotazione cancellata con successo' });
+
 }
 
 module.exports = {
