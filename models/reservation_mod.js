@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+const Exception = require('../exceptions/Exception');
 const file = '../db/reservations.json';
+
 
 class Reservation {
     #id;
@@ -47,9 +49,14 @@ class Reservation {
         const reservations = Reservation.getAllReservations();
         const filePath = path.join(__dirname, file);
 
-        const updatedReservations = reservations.filter(reservation => reservation.id !== reservationId);
+        const doesReservationExist = Reservation.getAllReservations().find(reservation => reservation.id == reservationId);
 
-      
+        if (!doesReservationExist) {
+            throw new Exception("Reservation not found", 404)
+        }
+
+        const updatedReservations = reservations.filter(reservation => reservation.id !== reservationId);
+        
         fs.writeFileSync(filePath, JSON.stringify(updatedReservations, null, 2));
     }
 

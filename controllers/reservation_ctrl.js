@@ -1,5 +1,6 @@
 const express = require('express');
 const Reservation = require('../models/reservation_mod');
+const Exception = require('../exceptions/Exception');
 
 
 /**
@@ -52,7 +53,9 @@ function store(req, res) {
         eventId
     );
 
-    Reservation.saveReservation(reservation);
+    if (Reservation.saveReservation(reservation)) {
+        throw new Exception("Server can't save data", 500)
+    }
 
     res.json({ reservation });
 }
@@ -63,19 +66,17 @@ function store(req, res) {
  * @param {express.Response} res 
  */
 function destroy(req, res) {
-    const reservationId = req.params.reservation;
 
-    // Controlla se la prenotazione esiste
-    const existingReservation = Reservation.getAllReservations().find(reservation => reservation.id == reservationId);
-    if (!existingReservation) {
-        return res.status(404).json({ error: 'Prenotazione non trovata' });
+    const reservationId = parseInt(req.params.reservation);
+
+    if (Reservation.deleteReservation(reservationId)) {
+        throw new Exception("Server can't delete data", 500)
     }
 
-    Reservation.deleteReservation(reservationId);
-
-    res.json({ message: 'Prenotazione cancellata con successo' });
+    res.json({ message: 'Reservation deleted!' });
 
 }
+
 
 module.exports = {
     index,

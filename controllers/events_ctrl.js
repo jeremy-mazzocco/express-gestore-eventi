@@ -105,7 +105,6 @@ function update(req, res) {
 }
 
 
-
 // other functions
 /**
  * function filter events by title
